@@ -424,4 +424,15 @@ $( init );
 
 function init() {
     $('.draggable').draggable();
+
+    // Mobile touch fallback: tap to move
+document.querySelectorAll('.draggable').forEach(item => {
+  item.addEventListener('touchstart', function () {
+    const targetId = this.getAttribute('data-target'); // Get target area
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.appendChild(this);
+    }
+  });
+});
 }
